@@ -1,0 +1,11 @@
+<div class="task">
+  <h3>
+    {{ appointment.name }}
+    <fa-icon
+    (click)="onDelete(appointment)"
+    [ngStyle]="{ color: 'red' }"
+    [icon]="faTimes"
+  ></fa-icon>
+  </h3>
+  <p>{{ appointment.date }}</p>
+</div>

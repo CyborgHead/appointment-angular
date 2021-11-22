@@ -13,4 +13,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  toggleCreateAppointment() {
+    console.log('Toggled create..');
+  }
 }
