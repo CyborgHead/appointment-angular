@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Appointment } from '../../Appointment';
-import { APPOINTMENTS } from '../../mock-appointments';
+import { AppointmentService } from '../../services/appointment.service';
+import { Appointment, AppointmentList } from '../../Appointment';
 
 @Component({
   selector: 'app-appointments',
@@ -8,11 +8,28 @@ import { APPOINTMENTS } from '../../mock-appointments';
   styleUrls: ['./appointments.component.css']
 })
 export class AppointmentsComponent implements OnInit {
-  appointments: Appointment[] = APPOINTMENTS;
+  appointments?: Appointment[] = [];
+  appointmentList: AppointmentList = {};
 
-  constructor() { }
+  constructor(private appointmentService: AppointmentService) { }
 
   ngOnInit(): void {
+    //this.appointmentService.getAppointments()
+    //        .subscribe((appointments) => this.appointments = appointments);
+    
+    this.appointmentService.getAppointments().subscribe(
+      (res: AppointmentList) => {
+        console.log(res);
+        this.appointmentList = res;
+        this.appointments = this.appointmentList.data;
+        console.log(this.appointments);
+      },
+      (err) => {
+        console.log(err);
+
+      }
+    )
+        
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Appointment } from '../../Appointment';
+import { Appointment, AppointmentList } from '../../Appointment';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
