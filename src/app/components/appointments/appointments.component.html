@@ -1,4 +1,5 @@
 <app-appointment-item
   *ngFor="let appointment of appointments"
   [appointment]="appointment"
+  (onDeleteAppointment)="deleteAppointment(appointment)"
 ></app-appointment-item>

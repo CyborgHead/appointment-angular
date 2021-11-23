@@ -26,10 +26,14 @@ export class AppointmentsComponent implements OnInit {
       },
       (err) => {
         console.log(err);
-
       }
-    )
-        
+      );  
+  }
+
+  deleteAppointment(appointment: Appointment){
+    console.log('deleting appointment :' + appointment.id);
+    this.appointmentService.deleteAppointment(appointment)
+            .subscribe(() => (this.appointments = this.appointments?.filter((a) => a.id !== appointment.id)));
   }
 
 }

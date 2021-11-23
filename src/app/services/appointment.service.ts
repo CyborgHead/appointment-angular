@@ -23,6 +23,11 @@ private apiUrl = 'https://uhtz68ly1g.execute-api.eu-west-1.amazonaws.com/api/v1/
     return this.http.get(this.apiUrl).pipe(catchError(this.handleError));
   }
 
+  deleteAppointment(appointment: Appointment): Observable<Appointment>{
+    const url = `${this.apiUrl}/${appointment.id}`;
+    return this.http.delete<Appointment>(url).pipe(catchError(this.handleError));
+  }
+
   handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
