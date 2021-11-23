@@ -8,7 +8,7 @@ import { Appointment, AppointmentList } from '../../Appointment';
   styleUrls: ['./appointments.component.css']
 })
 export class AppointmentsComponent implements OnInit {
-  appointments?: Appointment[] = [];
+  appointments: Appointment[] | undefined;
   appointmentList: AppointmentList = {};
 
   constructor(private appointmentService: AppointmentService) { }
@@ -32,8 +32,10 @@ export class AppointmentsComponent implements OnInit {
 
   createAppointment(appointment: Appointment) {
     console.log('creating appointment :' + appointment.name);
+    console.log(this.appointments);
     this.appointmentService.createAppointment(appointment)
                 .subscribe((appointment) => (this.appointments?.push(appointment)));
+    console.log(this.appointments);
   }  
 
   toggleUpdateAppointment(appointment: Appointment) {

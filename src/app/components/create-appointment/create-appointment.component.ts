@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Appointment } from '../../Appointment';
+import { UiService } from '../../services/ui.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-appointment',
@@ -14,8 +16,13 @@ export class CreateAppointmentComponent implements OnInit {
   date: string | undefined;
   startTime: string | undefined;
   endTime: string | undefined;
-
-  constructor() { }
+  showCreateAppointment: boolean = false;
+  subscription: Subscription | undefined;
+  
+  constructor(private uiService: UiService) { 
+      this.subscription = this.uiService.onToggleAddAppointment()
+                              .subscribe((value) => (this.showCreateAppointment = value));
+  }
 
   ngOnInit(): void {
   }

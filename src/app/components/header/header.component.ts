@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UiService } from '../../services/ui.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   title: string = 'Appointment Scheduler';
-  
-  constructor() { }
+  showCreateAppointment: boolean = false;
+  subscription: Subscription | undefined;
+
+  constructor(private uiService: UiService) {
+      this.subscription = this.uiService.onToggleAddAppointment()
+                              .subscribe((value) => (this.showCreateAppointment = value));
+   }
 
   ngOnInit(): void {
   }
 
   toggleCreateAppointment() {
-    console.log('Toggled create..');
+    this.uiService.toggleAddAppointment();
+    console.log('Toggled create appointment..');
   }
 }
