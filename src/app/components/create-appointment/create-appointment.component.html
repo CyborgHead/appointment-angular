@@ -1,0 +1,63 @@
+<form class="add-form" (ngSubmit)="onSubmit()">
+    <div class="form-control">
+      <label for="text">Name</label>
+      <input
+        type="text"
+        name="text"
+        [(ngModel)]="name"
+        id="name"
+        placeholder="Name"
+      />
+    </div>
+    <div class="form-control">
+        <label for="text">Email</label>
+        <input
+          type="text"
+          name="text"
+          [(ngModel)]="email"
+          id="email"
+          placeholder="Email"
+        />
+    </div>
+    <div class="form-control">
+        <label for="text">Phone</label>
+        <input
+          type="text"
+          name="text"
+          [(ngModel)]="phone"
+          id="phone"
+          placeholder="Phone"
+        />
+    </div>
+    <div class="form-control">
+      <label for="text">Date</label>
+      <input
+        type="text"
+        name="date"
+        [(ngModel)]="date"
+        id="date"
+        placeholder="Scheduled Date"
+      />
+    </div>
+    <div class="form-control">
+        <label for="text">Start Time</label>
+        <input
+          type="text"
+          name="startTime"
+          [(ngModel)]="startTime"
+          id="startTime"
+          placeholder="Start Time"
+        />
+    </div>
+    <div class="form-control">
+        <label for="text">End Time</label>
+        <input
+          type="text"
+          name="endTime"
+          [(ngModel)]="endTime"
+          id="endTime"
+          placeholder="End Time"
+        />
+    </div>
+    <input type="submit" value="Save Appointment" class="btn btn-block" />
+  </form>

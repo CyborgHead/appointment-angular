@@ -10,7 +10,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 export class AppointmentItemComponent implements OnInit {
   @Input() appointment!: Appointment;
   @Output() onDeleteAppointment: EventEmitter<Appointment> = new EventEmitter();
-  @Output() onToggleReminder: EventEmitter<Appointment> = new EventEmitter();
+  @Output() onUpdateAppointment: EventEmitter<Appointment> = new EventEmitter();
   faTimes = faTimes;
 
   constructor() { }
@@ -22,8 +22,13 @@ export class AppointmentItemComponent implements OnInit {
     this.onDeleteAppointment.emit(appointment);
   }
 
-  onToggle(appointment: Appointment | undefined) {
-    this.onToggleReminder.emit(appointment);
+  onToggleUpdate(appointment: Appointment) {
+    console.log('Toggled update appointment ID : ' + appointment.id);
+
+    // TODO: display update form.
+
+    // TODO: emit on Update button
+    //this.onUpdateAppointment.emit(appointment);
   }
 
 }

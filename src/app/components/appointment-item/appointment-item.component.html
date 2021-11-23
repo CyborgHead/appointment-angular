@@ -1,4 +1,4 @@
-<div class="task">
+<div class="task reminder" (click)="onToggleUpdate(appointment)">
   <h3>
     {{ appointment.name }}
     <fa-icon
@@ -8,7 +8,7 @@
   ></fa-icon>
   </h3>
   <h4>{{ appointment.email }}</h4>
-  <h5>{{ appointment.phone }}</h5>
+  <h5>{{ appointment.phoneNumber }}</h5>
   <p><strong>Date: </strong>{{ appointment.date }}</p>
   <p><strong>From: </strong>{{ appointment.startTime }}</p>
   <p><strong>To: </strong>{{ appointment.endTime }}</p>

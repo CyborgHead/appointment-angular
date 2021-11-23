@@ -30,6 +30,21 @@ export class AppointmentsComponent implements OnInit {
       );  
   }
 
+  createAppointment(appointment: Appointment) {
+    console.log('creating appointment :' + appointment.name);
+    this.appointmentService.createAppointment(appointment)
+                .subscribe((appointment) => (this.appointments?.push(appointment)));
+  }  
+
+  toggleUpdateAppointment(appointment: Appointment) {
+    //console.log('toggled updated appointment :' + appointment.id);
+  }
+
+  updateAppointment(appointment: Appointment){
+    console.log('updating appointment :' + appointment.id);
+    this.appointmentService.updateAppointment(appointment).subscribe();
+  }
+
   deleteAppointment(appointment: Appointment){
     console.log('deleting appointment :' + appointment.id);
     this.appointmentService.deleteAppointment(appointment)

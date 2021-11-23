@@ -1,5 +1,7 @@
+<app-create-appointment (onCreateAppointment)="createAppointment($event)"></app-create-appointment>
 <app-appointment-item
   *ngFor="let appointment of appointments"
   [appointment]="appointment"
   (onDeleteAppointment)="deleteAppointment(appointment)"
+  (onToggleUpdateAppointment)="toggleUpdateAppointment(appointment)"
 ></app-appointment-item>
