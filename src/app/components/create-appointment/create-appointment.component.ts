@@ -63,7 +63,6 @@ export class CreateAppointmentComponent implements OnInit {
       endTime: this.endTime
     }
 
-    // TODO: emit event
     this.onCreateAppointment.emit(newAppointment);
 
     // clear form after save 

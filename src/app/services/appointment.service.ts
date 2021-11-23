@@ -42,6 +42,28 @@ private apiUrl = 'https://uhtz68ly1g.execute-api.eu-west-1.amazonaws.com/api/v1/
     return this.http.delete<Appointment>(url).pipe(catchError(this.handleError));
   }
 
+  loadAppointmentsFromREST(): Observable<Appointment[]>{
+    const url = 'https://6oen8x7qoj.execute-api.eu-north-1.amazonaws.com/Prod/api/Appointments';
+    var token = 'E9658970-8A7E-4821-9335-6DCEAA3AC061';
+
+    // const headers = new HttpHeaders(
+    //   { 
+    //     'Access-Control-Allow-Origin': '*',
+    //     'Access-Control-Allow-Credentials': 'true',
+    //     'Accept': 'application/json',
+    //     'key': 'E9658970-8A7E-4821-9335-6DCEAA3AC061',
+    //     'Authorization': 'E9658970-8A7E-4821-9335-6DCEAA3AC061'
+    //   }
+    // );
+
+    return this.http.get<Appointment[]>(url, httpOptions).pipe(catchError(this.handleError));
+  }
+
+  importAppointments(appointments: Appointment[]): Observable<ServiceResponse<Appointment[]>>{
+    const url = `${this.apiUrl}/import`;
+    return this.http.post(url, appointments, httpOptions).pipe(catchError(this.handleError));
+  }
+
   handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
