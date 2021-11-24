@@ -10,7 +10,7 @@ import { Appointment, AppointmentList } from '../../Appointment';
 export class AppointmentsComponent implements OnInit {
   appointments: Appointment[] | undefined;
   appointmentList: AppointmentList = {};
-  loadedAppointments: Appointment[] | undefined;
+  loadedAppointments: Appointment[] = [];
 
   constructor(private appointmentService: AppointmentService) { }
 
@@ -52,10 +52,22 @@ export class AppointmentsComponent implements OnInit {
             .subscribe(() => (this.appointments = this.appointments?.filter((a) => a.id !== appointment.id)));
   }
 
-  importAppointments(appointments: Appointment[]) {
+  importAppointments() {
     //console.log(`importing ${appointments.length} appointments..`);
     console.log('Importing from REST api..');
-    this.appointmentService.loadAppointmentsFromREST().subscribe((result) => (this.loadedAppointments = result));
+    this.appointmentService.loadAppointmentsFromREST()
+              .subscribe((res: any) => {
+                      console.log(res);
+                      this.loadedAppointments = res;
+                      console.log(this.loadedAppointments);
+                      this.appointmentService.importAppointments(this.loadedAppointments).subscribe();
+                    },
+                      (err) => {
+                        console.log(err);
+                      }
+                    );
+
+    //window.location.reload();
 
     /** for manual add
     const newAppointment = {
@@ -69,9 +81,6 @@ export class AppointmentsComponent implements OnInit {
     appointments = [newAppointment];
     appointments.push(newAppointment);
     */
-
-    console.log(this.loadedAppointments);
-    //this.appointmentService.importAppointments(appointments).subscribe();
   }
 
 }

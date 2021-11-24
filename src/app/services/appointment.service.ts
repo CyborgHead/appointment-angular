@@ -44,24 +44,16 @@ private apiUrl = 'https://uhtz68ly1g.execute-api.eu-west-1.amazonaws.com/api/v1/
 
   loadAppointmentsFromREST(): Observable<Appointment[]>{
     const url = 'https://6oen8x7qoj.execute-api.eu-north-1.amazonaws.com/Prod/api/Appointments';
-    var token = 'E9658970-8A7E-4821-9335-6DCEAA3AC061';
 
-    // const headers = new HttpHeaders(
-    //   { 
-    //     'Access-Control-Allow-Origin': '*',
-    //     'Access-Control-Allow-Credentials': 'true',
-    //     'Accept': 'application/json',
-    //     'key': 'E9658970-8A7E-4821-9335-6DCEAA3AC061',
-    //     'Authorization': 'E9658970-8A7E-4821-9335-6DCEAA3AC061'
-    //   }
-    // );
-
-    return this.http.get<Appointment[]>(url, httpOptions).pipe(catchError(this.handleError));
+    return this.http.get<Appointment[]>(url).pipe(catchError(this.handleError));
   }
 
   importAppointments(appointments: Appointment[]): Observable<ServiceResponse<Appointment[]>>{
+    console.log('Appointments to import..');
+    console.log(appointments);
+
     const url = `${this.apiUrl}/import`;
-    return this.http.post(url, appointments, httpOptions).pipe(catchError(this.handleError));
+    return this.http.post(url, appointments).pipe(catchError(this.handleError));
   }
 
   handleError(error: HttpErrorResponse) {
